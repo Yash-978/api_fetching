@@ -15,10 +15,10 @@ class RecipeDetailPage extends StatelessWidget {
         Provider.of<RecipeProvider>(context, listen: true);
     RecipeProvider recipeProviderFalse =
         Provider.of<RecipeProvider>(context, listen: false);
-    RecipeDetailPage recipeDetailPageTrue =
-        Provider.of<RecipeDetailPage>(context, listen: true);
-    RecipeDetailPage recipeDetailPageFalse =
-        Provider.of<RecipeDetailPage>(context, listen: false);
+    // RecipeDetailPage recipeDetailPageTrue =
+    //     Provider.of<RecipeDetailPage>(context, listen: true);
+    // RecipeDetailPage recipeDetailPageFalse =
+    //     Provider.of<RecipeDetailPage>(context, listen: false);
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -148,12 +148,6 @@ class RecipeDetailPage extends StatelessWidget {
                                         Container(
                                           height: h * 0.04,
                                           width: w * 0.04,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                                  'assets/images/StarBucks_Logos/vegIcon.jpg'),
-                                            ),
-                                          ),
                                         ),
                                         SizedBox(width: w * 0.02),
                                         Text(
