@@ -5,7 +5,7 @@ import 'package:http/http.dart'as http;
 import 'package:http/http.dart';
 class EcommerceApiHelper{
   String api="https://dummyjson.com/recipes";
-  FuturefetchEcomData()
+  Future<Map>fetchEcommerceData()
   async{
     Uri url = Uri.parse(api);
     Response response = await  http.get(url);

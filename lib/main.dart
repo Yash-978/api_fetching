@@ -1,3 +1,5 @@
+import 'package:api_fetching/Screens/EcommerceApp/EcommerceProvider/ecommerceProvider.dart';
+import 'package:api_fetching/Screens/EcommerceApp/EcommerceView/EcommerceHomePage.dart';
 import 'package:api_fetching/Screens/RecipeApp/RecipeProvider/recipeProvider.dart';
 import 'package:api_fetching/Screens/RecipeApp/RecipeView/recipeView.dart';
 import 'package:flutter/material.dart';
@@ -28,19 +30,24 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => RecipeDetailProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => EcommerceProvider(),
+        ),
       ],
-      builder: (context, child) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        // theme: ThemeData.light(),
-        // darkTheme: ThemeData.dark(),
-        // themeMode: ThemeMode.system,
-        initialRoute: '/recipe',
-        routes: {
-          '/': (context) => PixabayPageView(),
-          '/recipe': (context) => RecipePageView(),
-          '/recipeDetail': (context) => RecipeDetailPage(),
-        },
-      ),
+      builder: (context, child) =>
+          MaterialApp(
+            debugShowCheckedModeBanner: false,
+            // theme: ThemeData.light(),
+            // darkTheme: ThemeData.dark(),
+            // themeMode: ThemeMode.system,
+            initialRoute: '/ecomHome',
+            routes: {
+              '/': (context) => PixabayPageView(),
+              '/recipe': (context) => RecipePageView(),
+              '/recipeDetail': (context) => RecipeDetailPage(),
+              '/ecomHome': (context) => EcommerceHomePage(),
+            },
+          ),
     );
   }
 }

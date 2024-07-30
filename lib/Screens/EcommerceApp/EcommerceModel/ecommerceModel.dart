@@ -4,11 +4,18 @@ class EcommerceModel {
   late List<Products> products;
   late int total, skip, limit;
 
-  EcommerceModel(
-      {required this.products,
-      required this.total,
-      required this.skip,
-      required this.limit});
+  EcommerceModel({required this.products,
+    required this.total,
+    required this.skip,
+    required this.limit});
+
+  factory EcommerceModel.fromJson(Map m1)
+  {
+    return EcommerceModel(products: (m1['products'] as List)
+        .map((e) => Products.fromJson(e),)
+
+        .toList(), total: m1['total'], skip: m1['skip'], limit: m1['limit']);
+  }
 }
 
 class Products {
@@ -66,7 +73,7 @@ class Products {
         reviews: (m1['reviews'] as List)
             .map(
               (e) => Reviews.fromJson(e),
-            )
+        )
             .toList(),
         meta: m1['meta'],
         id: m1['id'],
@@ -128,11 +135,10 @@ class Reviews {
 class Meta {
   late String createdAt, updatedAt, barcode, qrCode;
 
-  Meta(
-      {required this.createdAt,
-      required this.updatedAt,
-      required this.barcode,
-      required this.qrCode});
+  Meta({required this.createdAt,
+    required this.updatedAt,
+    required this.barcode,
+    required this.qrCode});
 
   factory Meta.fromJson(Map m1) {
     return Meta(

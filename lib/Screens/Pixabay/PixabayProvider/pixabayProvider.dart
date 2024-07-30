@@ -4,20 +4,18 @@ import '../PixabayModel/pixabayModel.dart';
 import '../PixapayApiHelper.dart';
 
 class PixabayProvider extends ChangeNotifier {
-  // ApiHelper apiHelper=ApiHelper();
+  ApiHelper apiHelper = ApiHelper();
   PixabayModel? pixabayModel;
-  String search='';
-  void searchImage(String img)
-  {
-    search=img;
+  String search = 'flower';
+
+  void searchImage(String img) {
+    search = img;
     notifyListeners();
   }
 
-
-
-  Future<PixabayModel?> fromMap(String search) async {
-    final data =await ApiHelper.apiHelper.fetchApiData(search);
-    pixabayModel=PixabayModel.fromApi(data);
+  Future<PixabayModel?> fromApi(String img) async {
+    final data = await apiHelper.fetchApiData(img);
+    pixabayModel = PixabayModel.fromJson(data);
     notifyListeners();
     return pixabayModel;
   }

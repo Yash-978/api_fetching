@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class PixabayModel {
-  late int totalHits;
+
   late List<Hits> hits = [];
 
-  PixabayModel({required this.totalHits, required this.hits});
+  PixabayModel({ required this.hits});
 
-  factory PixabayModel.fromApi(Map m1) {
+  factory PixabayModel.fromJson(Map m1) {
     return PixabayModel(
-        totalHits: m1['totalHits'],
+
         hits: (m1['hits'] as List)
             .map(
-              (e) => Hits.fromApi(e),
+              (e) => Hits.fromJson(e),
         )
             .toList());
   }
@@ -27,7 +27,7 @@ class Hits {
     required this.userImageURL,
   });
 
-  factory Hits.fromApi(Map m1) {
+  factory Hits.fromJson(Map m1) {
     return Hits(
         pageURL: m1['pageURL'],
         largeImageURL: m1['largeImageURL'],
