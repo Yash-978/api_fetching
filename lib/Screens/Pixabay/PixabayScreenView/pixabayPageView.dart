@@ -1,4 +1,6 @@
+import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../PixabayModel/pixabayModel.dart';
@@ -31,9 +33,9 @@ class PixabayPageView extends StatelessWidget {
           cursorColor: Colors.black,
           decoration: InputDecoration(
             suffixIcon: GestureDetector(
-              // onTap: () {
-              //   pixabayProviderFalse.searchImage(pixabayProviderFalse.search);
-              // },
+              onTap: () {
+                pixabayProviderFalse.clearField();
+              },
               child: const Icon(Icons.close),
             ),
             prefixIcon: const Icon(Icons.search),
@@ -69,15 +71,22 @@ class PixabayPageView extends StatelessWidget {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                 ),
-                itemBuilder: (context, index) => Container(
-                  height: 300,
-                  width: double.infinity,
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(viewImage!.hits[index].largeImageURL),
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    selectWallpaperPage = index;
+                    Navigator.of(context).pushNamed('/wallpaper');
+                  },
+                  child: Container(
+                    height: 300,
+                    width: double.infinity,
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image:
+                            NetworkImage(viewImage!.hits[index].largeImageURL),
+                      ),
                     ),
                   ),
                 ),
@@ -92,9 +101,13 @@ class PixabayPageView extends StatelessWidget {
               ],
             );
           } else {
-            return const Center(
+            return Center(
               child: CircularProgressIndicator(),
             );
+
+            // Center(
+            //   child: FadeInImage(placeholder: AssetImage('assets/images/CPI_pixabay.gif'), image: AssetImage('assets/images/CPI_pixabay.gif')),
+            // );
           }
         },
       ),
@@ -102,72 +115,4 @@ class PixabayPageView extends StatelessWidget {
   }
 }
 
-//
-//   Widget build(BuildContext context) {
-//     double h = MediaQuery.of(context).size.height;
-//     double w = MediaQuery.of(context).size.width;
-//     PixabayProvider pixabayProviderFalse = Provider.of<PixabayProvider>(context, listen: false);
-//     PixabayProvider pixabayProviderTrue = Provider.of<PixabayProvider>(context, listen: true);
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Row(
-//           children: [
-//             Expanded(
-//               child: TextField(
-//                 onChanged: (value) {
-//                   pixabayProviderFalse.searchImage(value);
-//                 },
-//                 controller: txtSearch,
-//                 decoration: InputDecoration(
-//                   prefixIcon: Icon(Icons.search),
-//                   label: Text('Search Images'),
-//                   border: OutlineInputBorder(
-//                     borderRadius: BorderRadius.circular(10),
-//                   ),
-//                 ),
-//               ),
-//             ),
-//             IconButton(
-//                 onPressed: () {
-//                   pixabayProviderFalse.searchImage(pixabayProviderFalse.search);
-//                 },
-//                 icon: Icon(Icons.search)),
-//           ],
-//         ),
-//       ),
-//       body: FutureBuilder(
-//         future: Provider.of<PixabayProvider>(context, listen: false)
-//             .fromApi(pixabayProviderFalse.search),
-//         builder: (context, snapshot) {
-//           if (snapshot.hasData) {
-//             PixabayModel? viewHome = snapshot.data;
-//             return GridView.builder(
-//               gridDelegate:
-//                   SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-//               itemCount: viewHome!.hits.length,
-//               itemBuilder: (context, index) {
-//                 Container(
-//                   height: 0.4,
-//                   padding: EdgeInsets.all(8),
-//                   decoration: BoxDecoration(
-//                       image: DecorationImage(
-//                     image:
-//                         NetworkImage("${viewHome.hits[index].largeImageURL}"),
-//                   )),
-//                 );
-//               },
-//             );
-//           } else if (snapshot.hasError) {
-//             return Center(
-//                 child: Text(
-//               snapshot.error.toString(),
-//               style: TextStyle(color: Colors.black, fontSize: 25),
-//             ));
-//           } else {
-//             return Center(child: CircularProgressIndicator());
-//           }
-//         },
-//       ),
-//     );
-//   }
-// }
+

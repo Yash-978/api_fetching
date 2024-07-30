@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'Screens/Pixabay/PixabayProvider/pixabayProvider.dart';
+import 'Screens/Pixabay/PixabayScreenView/WallpaperScreen.dart';
 import 'Screens/Pixabay/PixabayScreenView/pixabayPageView.dart';
 import 'Screens/RecipeApp/RecipeProvider/RecipeDetailProvider.dart';
 import 'Screens/RecipeApp/RecipeView/recipeDetailPage.dart';
@@ -40,12 +41,13 @@ class MyApp extends StatelessWidget {
             // theme: ThemeData.light(),
             // darkTheme: ThemeData.dark(),
             // themeMode: ThemeMode.system,
-            initialRoute: '/ecomHome',
+            // initialRoute: '/ecomHome',
             routes: {
               '/': (context) => PixabayPageView(),
               '/recipe': (context) => RecipePageView(),
               '/recipeDetail': (context) => RecipeDetailPage(),
               '/ecomHome': (context) => EcommerceHomePage(),
+              '/wallpaper': (context) => WallpaperPage(),
             },
           ),
     );
