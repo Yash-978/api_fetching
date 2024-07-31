@@ -18,12 +18,11 @@ class PixabayPageView extends StatelessWidget {
     var pixabayProviderTrue =
         Provider.of<PixabayProvider>(context, listen: true);
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        // backgroundColor: Colors.transparent,
         centerTitle: true,
-        leading: const Icon(
-          Icons.account_circle_outlined,
-          size: 30,
-        ),
+
         scrolledUnderElevation: 0.1,
         title: TextFormField(
           onFieldSubmitted: (value) {
@@ -64,29 +63,24 @@ class PixabayPageView extends StatelessWidget {
         builder: (context, snapshot) {
           PixabayModel? viewImage = snapshot.data;
           if (snapshot.hasData) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GridView.builder(
-                itemCount: viewImage!.hits.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                ),
-                itemBuilder: (context, index) => GestureDetector(
-                  onTap: () {
-                    selectWallpaperPage = index;
-                    Navigator.of(context).pushNamed('/wallpaper');
-                  },
-                  child: Container(
-                    height: 300,
-                    width: double.infinity,
-                    margin: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image:
-                            NetworkImage(viewImage!.hits[index].largeImageURL),
-                      ),
+            return GridView.builder(
+              itemCount: viewImage!.hits.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, childAspectRatio: 9 / 16),
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () {
+                  selectWallpaperPage = index;
+                  Navigator.of(context).pushNamed('/wallpaper');
+                },
+                child: Container(
+                  height: 300,
+                  width: double.infinity,
+                  margin: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(viewImage!.hits[index].largeImageURL),
                     ),
                   ),
                 ),
@@ -114,5 +108,3 @@ class PixabayPageView extends StatelessWidget {
     );
   }
 }
-
-

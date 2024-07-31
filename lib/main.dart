@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
             // darkTheme: ThemeData.dark(),
             // themeMode: ThemeMode.system,
             // initialRoute: '/ecomHome',
+            // initialRoute: '/ecomHome',
             routes: {
               '/': (context) => PixabayPageView(),
               '/recipe': (context) => RecipePageView(),
