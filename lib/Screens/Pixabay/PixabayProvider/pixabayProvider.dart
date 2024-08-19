@@ -18,11 +18,11 @@ class PixabayProvider extends ChangeNotifier {
   {
     txtSearch.clear();
   }
-  void selectedImage(int index)
-  {
-    selectWallpaperPage = index ;
-    notifyListeners();
-  }
+  // void selectedImage(int index)
+  // {
+  //   selectWallpaperPage = index ;
+  //   notifyListeners();
+  // }
 
   Future<PixabayModel?> fromApi(String img) async {
     final data = await apiHelper.fetchApiData(img);

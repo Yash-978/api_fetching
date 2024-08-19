@@ -1,35 +1,38 @@
-import 'package:flutter/material.dart';
 
 class EcommerceModel {
-  late List<Products> products;
   late int total, skip, limit;
+  late List<Products> products;
 
-  EcommerceModel({required this.products,
+  EcommerceModel({
     required this.total,
     required this.skip,
-    required this.limit});
+    required this.limit,
+    required this.products,
+  });
 
-  factory EcommerceModel.fromJson(Map m1)
-  {
-    return EcommerceModel(products: (m1['products'] as List)
-        .map((e) => Products.fromJson(e),)
-
-        .toList(), total: m1['total'], skip: m1['skip'], limit: m1['limit']);
+  factory EcommerceModel.fromJson(Map m1) {
+    return EcommerceModel(
+      total: m1['total'],
+      skip: m1['skip'],
+      limit: m1['limit'],
+      products: (m1['products'] as List)
+          .map(
+            (e) => Products.fromJson(e),
+          )
+          .toList(),
+    );
   }
 }
 
 class Products {
-  late Dimensions dimensions;
-  late List<Reviews> reviews;
-  late Meta meta;
-  late int id,
+  late dynamic id,
       price,
       discountPercentage,
-      minimumOrderQuantity,
       ratings,
       stocks,
-      weight;
-  late String title,
+      weight,
+      minimumOrderQuantity;
+  late dynamic title,
       description,
       category,
       brand,
@@ -40,19 +43,19 @@ class Products {
       returnPolicy,
       thumbnail;
   late List tags;
+  late List<Reviews> reviews;
   late List images;
+  late Meta meta;
+  late Dimensions dimensions;
 
   Products({
-    required this.dimensions,
-    required this.reviews,
-    required this.meta,
     required this.id,
     required this.price,
     required this.discountPercentage,
-    required this.minimumOrderQuantity,
     required this.ratings,
     required this.stocks,
     required this.weight,
+    required this.minimumOrderQuantity,
     required this.title,
     required this.description,
     required this.category,
@@ -64,25 +67,21 @@ class Products {
     required this.returnPolicy,
     required this.thumbnail,
     required this.tags,
+    required this.reviews,
     required this.images,
+    required this.meta,
+    required this.dimensions,
   });
 
   factory Products.fromJson(Map m1) {
     return Products(
-        dimensions: Dimensions.fromJson(m1['dimensions']),
-        reviews: (m1['reviews'] as List)
-            .map(
-              (e) => Reviews.fromJson(e),
-        )
-            .toList(),
-        meta: m1['meta'],
-        id: m1['id'],
-        price: m1['price'],
-        discountPercentage: m1['discountPercentage'],
-        minimumOrderQuantity: m1['minimumOrderQuantity'],
-        ratings: m1['ratings'],
-        stocks: m1['stocks'],
-        weight: m1['weight'],
+        id: m1['id'].toDouble(),
+        price: m1['price'].toDouble(),
+        discountPercentage: m1['discountPercentage'].toDouble(),
+        ratings: m1['ratings'].toDouble(),
+        stocks: m1['stocks'].toDouble(),
+        weight: m1['weight'].toDouble(),
+        minimumOrderQuantity: m1['minimumOrderQuantity'].toDouble(),
         title: m1['title'],
         description: m1['description'],
         category: m1['category'],
@@ -94,14 +93,25 @@ class Products {
         returnPolicy: m1['returnPolicy'],
         thumbnail: m1['thumbnail'],
         tags: m1['tags'],
-        images: m1['images']);
+        reviews: (m1['reviews'] as List)
+            .map(
+              (e) => Reviews.fromJson(e),
+            )
+            .toList(),
+        images: m1['images'],
+        meta: m1['meta'],
+        dimensions: m1['dimensions']);
   }
 }
 
 class Dimensions {
   late int width, height, depth;
 
-  Dimensions({required this.width, required this.height, required this.depth});
+  Dimensions({
+    required this.width,
+    required this.height,
+    required this.depth,
+  });
 
   factory Dimensions.fromJson(Map m1) {
     return Dimensions(
@@ -123,22 +133,22 @@ class Reviews {
 
   factory Reviews.fromJson(Map m1) {
     return Reviews(
-      ratings: m1['ratings'],
-      comment: m1['comment'],
-      date: m1['date'],
-      reviewerName: m1['reviewerName'],
-      reviewerEmail: m1['reviewerEmail'],
-    );
+        ratings: m1['ratings'],
+        comment: m1['comment'],
+        date: m1['date'],
+        reviewerName: m1['reviewerName'],
+        reviewerEmail: m1['reviewerEmail']);
   }
 }
 
 class Meta {
   late String createdAt, updatedAt, barcode, qrCode;
 
-  Meta({required this.createdAt,
-    required this.updatedAt,
-    required this.barcode,
-    required this.qrCode});
+  Meta(
+      {required this.createdAt,
+      required this.updatedAt,
+      required this.barcode,
+      required this.qrCode});
 
   factory Meta.fromJson(Map m1) {
     return Meta(

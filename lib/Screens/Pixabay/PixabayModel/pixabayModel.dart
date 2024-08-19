@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
 class PixabayModel {
-
   late List<Hits> hits = [];
 
-  PixabayModel({ required this.hits});
+  PixabayModel({required this.hits});
 
   factory PixabayModel.fromJson(Map m1) {
     return PixabayModel(
-
         hits: (m1['hits'] as List)
             .map(
               (e) => Hits.fromJson(e),
-        )
+            )
             .toList());
   }
 }
