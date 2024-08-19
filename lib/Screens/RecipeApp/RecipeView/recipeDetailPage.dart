@@ -286,6 +286,7 @@ class RecipeDetailPage extends StatelessWidget {
         Provider.of<RecipeDetailProvider>(context, listen: false);
     var detailRecipeProviderTrue =
         Provider.of<RecipeDetailProvider>(context, listen: true);
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
