@@ -33,4 +33,26 @@ height=22% >
 
 
 
+<h3 align = "center"> Recipe HomeScreen</h3>
+<h3 align = "center"></h3>
+<p align = "center">
+<img src= "https://github.com/user-attachments/assets/fa74f3db-41ae-417b-bde9-9cff59fb1e1a" width=35%
+height=22% >
+
+<h3 align = "center"> Recipe DetailScreen</h3>
+<h3 align = "center"></h3>
+<p align = "center">
+<img src= "https://github.com/user-attachments/assets/97128fd5-72c1-495c-990a-546aeaa7fe26" width=35%
+height=22% >
+
+
+
+
+
+
+
+ <div align = "center">
+<video src= "https://github.com/user-attachments/assets/20b3eda0-11ba-4385-9349-e7d3468b1930" width=35%
+height=22% >
+</div>
 
